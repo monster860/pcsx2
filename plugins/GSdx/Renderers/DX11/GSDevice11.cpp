@@ -266,6 +266,15 @@ bool GSDevice11::Create(const std::shared_ptr<GSWnd> &wnd)
 	ShaderMacro sm_model(m_shader.model);
 
 	std::vector<char> shader;
+
+	memset(&bd, 0, sizeof(bd));
+
+	bd.ByteWidth = sizeof(MiscConstantBuffer);
+	bd.Usage = D3D11_USAGE_DEFAULT;
+	bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+
+	hr = m_dev->CreateBuffer(&bd, nullptr, &m_convert.cb);
+
 	theApp.LoadResource(IDR_CONVERT_FX, shader);
 	CreateShader(shader, "convert.fx", nullptr, "vs_main", sm_model.GetPtr(), &m_convert.vs, il_convert, countof(il_convert), &m_convert.il);
 
@@ -935,21 +944,69 @@ void GSDevice11::RenderOsd(GSTexture* dt)
 
 void GSDevice11::DoMerge(GSTexture* sTex[3], GSVector4* sRect, GSTexture* dTex, GSVector4* dRect, const GSRegPMODE& PMODE, const GSRegEXTBUF& EXTBUF, const GSVector4& c)
 {
-	bool slbg = PMODE.SLBG;
-	bool mmod = PMODE.MMOD;
+	GSVector4 full_r(0.0f, 0.0f, 1.0f, 1.0f);
+	bool feedback_write_2 = PMODE.EN2 && sTex[2] != nullptr && EXTBUF.FBIN == 1;
+	bool feedback_write_1 = PMODE.EN1 && sTex[2] != nullptr && EXTBUF.FBIN == 0;
+	bool feedback_write_2_but_blend_bg = feedback_write_2 && PMODE.SLBG == 1;
 
+	// Merge the 2 source textures (sTex[0],sTex[1]). Final results go to dTex. Feedback write will go to sTex[2].
+	// If either 2nd output is disabled or SLBG is 1, a background color will be used.
+	// Note: background color is also used when outside of the unit rectangle area
 	ClearRenderTarget(dTex, c);
 
-	if(sTex[1] && !slbg)
-	{
-		StretchRect(sTex[1], sRect[1], dTex, dRect[1], m_merge.ps[0], NULL, true);
+	// Upload constant to select YUV algo
+	if (feedback_write_2 || feedback_write_1) {
+		// Write result to feedback loop
+		m_misc_cb_cache.EMOD_AC.x = EXTBUF.EMODA;
+		m_misc_cb_cache.EMOD_AC.y = EXTBUF.EMODC;
+		m_ctx->UpdateSubresource(m_convert.cb, 0, nullptr, &m_misc_cb_cache, 0, 0);
 	}
 
-	if(sTex[0])
+	if (sTex[1] && (PMODE.SLBG == 0 || feedback_write_2_but_blend_bg))
 	{
-		m_ctx->UpdateSubresource(m_merge.cb, 0, NULL, &c, 0, 0);
+		// 2nd output is enabled and selected. Copy it to destination so we can blend it with 1st output
+		// Note: value outside of dRect must contains the background color (c)
+		StretchRect(sTex[1], sRect[1], dTex, dRect[1], ShaderConvert_COPY);
+	}
 
-		StretchRect(sTex[0], sRect[0], dTex, dRect[0], m_merge.ps[mmod ? 1 : 0], m_merge.cb, m_merge.bs, true);
+	// Save 2nd output
+	if (feedback_write_2) // FIXME I'm not sure dRect[1] is always correct
+		StretchRect(dTex, full_r, sTex[2], dRect[1], ShaderConvert_YUV);
+
+	// Restore background color to process the normal merge
+	if (feedback_write_2_but_blend_bg)
+		ClearRenderTarget(dTex, c);
+
+	if (sTex[0])
+	{
+		if (PMODE.AMOD == 1)
+		{
+			// Keep the alpha from the 2nd output
+			D3D11_BLEND_DESC bd = {};
+			uint8 write_mask = 0;
+
+			write_mask |= D3D11_COLOR_WRITE_ENABLE_RED;
+			write_mask |= D3D11_COLOR_WRITE_ENABLE_GREEN;
+			write_mask |= D3D11_COLOR_WRITE_ENABLE_BLUE;
+
+			bd.RenderTarget[0].RenderTargetWriteMask = write_mask;
+
+			m_dev->CreateBlendState(&bd, &m_merge.bs);
+		}
+
+		// 1st output is enabled. It must be blended
+		if (PMODE.MMOD == 1)
+		{
+			// Blend with a constant alpha
+			m_ctx->UpdateSubresource(m_merge.cb, 0, nullptr, &c.v, 0, 0);
+
+			StretchRect(sTex[0], sRect[0], dTex, dRect[0], m_merge.ps[1], m_merge.cb, m_merge.bs, true);
+		}
+		else
+		{
+			// Blend with 2 * input alpha
+			StretchRect(sTex[0], sRect[0], dTex, dRect[0], m_merge.ps[0], m_merge.cb, m_merge.bs, true);
+		}
 	}
 }
 
