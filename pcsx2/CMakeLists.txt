@@ -555,10 +555,10 @@ set(pcsx2x86Sources
 	x86/iFPUd.cpp
 	x86/iMisc.cpp
 	x86/iMMI.cpp
-	x86/iR3000A.cpp
-	x86/iR3000Atables.cpp
-	x86/iR5900Misc.cpp
-	x86/ir5900tables.cpp
+	x86/iR3000A/iR3000A.cpp
+	x86/iR3000A/iR3000Atables.cpp
+	x86/iR5900/iR5900Misc.cpp
+	x86/iR5900/iR5900tables.cpp
 	x86/iVU1micro.cpp
 	x86/ix86-32/iCore-32.cpp
 	x86/ix86-32/iR5900-32.cpp
@@ -615,16 +615,16 @@ set(pcsx2x86Headers
 	x86/iCore.h
 	x86/iFPU.h
 	x86/iMMI.h
-	x86/iR3000A.h
-	x86/iR5900Arit.h
-	x86/iR5900AritImm.h
-	x86/iR5900Branch.h
-	x86/iR5900.h
-	x86/iR5900Jump.h
-	x86/iR5900LoadStore.h
-	x86/iR5900Move.h
-	x86/iR5900MultDiv.h
-	x86/iR5900Shift.h
+	x86/iR3000A/iR3000A.h
+	x86/iR5900/iR5900Arit.h
+	x86/iR5900/iR5900AritImm.h
+	x86/iR5900/iR5900Branch.h
+	x86/iR5900/iR5900.h
+	x86/iR5900/iR5900Jump.h
+	x86/iR5900/iR5900LoadStore.h
+	x86/iR5900/iR5900Move.h
+	x86/iR5900/iR5900MultDiv.h
+	x86/iR5900/iR5900Shift.h
 	x86/R5900_Profiler.h
 	${newVifHeaders}
 	${sVUHeaders}

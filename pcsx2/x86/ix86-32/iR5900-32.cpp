@@ -20,7 +20,7 @@
 
 #include "R5900Exceptions.h"
 #include "R5900OpcodeTables.h"
-#include "iR5900.h"
+#include "iR5900/iR5900.h"
 #include "BaseblockEx.h"
 #include "System/RecTypes.h"
 

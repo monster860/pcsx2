@@ -392,10 +392,10 @@
     <ClCompile Include="..\..\x86\iMMI.cpp">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\x86\iR5900Misc.cpp">
+    <ClCompile Include="..\..\x86\iR5900\iR5900Misc.cpp">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\x86\ir5900tables.cpp">
+    <ClCompile Include="..\..\x86\iR5900\iR5900tables.cpp">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClCompile>
     <ClCompile Include="..\..\x86\ix86-32\iR5900-32.cpp">
@@ -482,10 +482,10 @@
     <ClCompile Include="..\..\Sio.cpp">
       <Filter>System\Ps2\Iop</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\x86\iR3000A.cpp">
+    <ClCompile Include="..\..\x86\iR3000A\iR3000A.cpp">
       <Filter>System\Ps2\Iop\Dynarec</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\x86\iR3000Atables.cpp">
+    <ClCompile Include="..\..\x86\iR3000A\iR3000Atables.cpp">
       <Filter>System\Ps2\Iop\Dynarec</Filter>
     </ClCompile>
     <ClCompile Include="..\..\IopHw.cpp">
@@ -1035,31 +1035,31 @@
     <ClInclude Include="..\..\x86\iMMI.h">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\x86\iR5900.h">
+    <ClInclude Include="..\..\x86\iR5900\iR5900.h">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\x86\iR5900Arit.h">
+    <ClInclude Include="..\..\x86\iR5900\iR5900Arit.h">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\x86\iR5900AritImm.h">
+    <ClInclude Include="..\..\x86\iR5900\iR5900AritImm.h">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\x86\iR5900Branch.h">
+    <ClInclude Include="..\..\x86\iR5900\iR5900Branch.h">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\x86\iR5900Jump.h">
+    <ClInclude Include="..\..\x86\iR5900\iR5900Jump.h">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\x86\iR5900LoadStore.h">
+    <ClInclude Include="..\..\x86\iR5900\iR5900LoadStore.h">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\x86\iR5900Move.h">
+    <ClInclude Include="..\..\x86\iR5900\iR5900Move.h">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\x86\iR5900MultDiv.h">
+    <ClInclude Include="..\..\x86\iR5900\iR5900MultDiv.h">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\x86\iR5900Shift.h">
+    <ClInclude Include="..\..\x86\iR5900\iR5900Shift.h">
       <Filter>System\Ps2\EmotionEngine\EE\Dynarec</Filter>
     </ClInclude>
     <ClInclude Include="..\..\IopBios.h">
@@ -1083,7 +1083,7 @@
     <ClInclude Include="..\..\Sio.h">
       <Filter>System\Ps2\Iop</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\x86\iR3000A.h">
+    <ClInclude Include="..\..\x86\iR3000A\iR3000A.h">
       <Filter>System\Ps2\Iop\Dynarec</Filter>
     </ClInclude>
     <ClInclude Include="..\..\IopHw.h">

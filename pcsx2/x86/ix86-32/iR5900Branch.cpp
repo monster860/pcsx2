@@ -20,7 +20,7 @@
 
 #include "Common.h"
 #include "R5900OpcodeTables.h"
-#include "iR5900.h"
+#include "iR5900/iR5900.h"
 
 using namespace x86Emitter;
 

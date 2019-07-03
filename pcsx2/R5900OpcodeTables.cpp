@@ -14,21 +14,21 @@
  */
 
 
-//all tables for R5900 are define here..
+//all tables for R5900 are defined here..
 
 #include "PrecompiledHeader.h"
 
 #include "R5900OpcodeTables.h"
 #include "R5900.h"
 
-#include "x86/iR5900AritImm.h"
-#include "x86/iR5900Arit.h"
-#include "x86/iR5900MultDiv.h"
-#include "x86/iR5900Shift.h"
-#include "x86/iR5900Branch.h"
-#include "x86/iR5900Jump.h"
-#include "x86/iR5900LoadStore.h"
-#include "x86/iR5900Move.h"
+#include "x86/iR5900/iR5900AritImm.h"
+#include "x86/iR5900/iR5900Arit.h"
+#include "x86/iR5900/iR5900MultDiv.h"
+#include "x86/iR5900/iR5900Shift.h"
+#include "x86/iR5900/iR5900Branch.h"
+#include "x86/iR5900/iR5900Jump.h"
+#include "x86/iR5900/iR5900LoadStore.h"
+#include "x86/iR5900/iR5900Move.h"
 #include "x86/iMMI.h"
 #include "x86/iCOP0.h"
 #include "x86/iFPU.h"

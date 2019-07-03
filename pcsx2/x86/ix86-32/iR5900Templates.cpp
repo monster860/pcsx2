@@ -18,7 +18,7 @@
 #include "Common.h"
 #include "Memory.h"
 #include "R5900OpcodeTables.h"
-#include "iR5900.h"
+#include "iR5900/iR5900.h"
 #include "iMMI.h"
 #include "iFPU.h"
 #include "iCOP0.h"

@@ -35,7 +35,7 @@
 #include "MTVU.h"
 
 #include "R5900.h"
-#include "iR5900.h"
+#include "iR5900/iR5900.h"
 #include "System/RecTypes.h"
 
 #include "sVU_zerorec.h"

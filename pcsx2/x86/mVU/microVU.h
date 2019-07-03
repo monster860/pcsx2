@@ -28,7 +28,7 @@ using namespace x86Emitter;
 #include "MTVU.h"
 #include "GS.h"
 #include "Gif_Unit.h"
-#include "iR5900.h"
+#include "iR5900/iR5900.h"
 #include "R5900OpcodeTables.h"
 #include "System/RecTypes.h"
 #include "x86emitter/x86emitter.h"

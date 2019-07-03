@@ -16,7 +16,7 @@
 #include "PrecompiledHeader.h"
 
 #include "Common.h"
-#include "iR5900.h"
+#include "iR5900/iR5900.h"
 #include "R5900OpcodeTables.h"
 
 using namespace x86Emitter;

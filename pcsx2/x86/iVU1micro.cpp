@@ -17,7 +17,7 @@
 #include "PrecompiledHeader.h"
 #if 0
 #include "Common.h"
-#include "iR5900.h"
+#include "iR5900/iR5900.h"
 #include "VUmicro.h"
 #include "sVU/sVU_zerorec.h"
 

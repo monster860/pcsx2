@@ -19,7 +19,7 @@
 #include "Common.h"
 #include "R5900OpcodeTables.h"
 #include "x86emitter/x86emitter.h"
-#include "iR5900.h"
+#include "iR5900/iR5900.h"
 #include "iFPU.h"
 
 #ifndef DISABLE_SVU

@@ -31,7 +31,7 @@
 #include <ctype.h>
 
 #include "R3000A.h"
-#include "iR5900.h"
+#include "iR5900/iR5900.h"
 #include "System.h"
 #include "DebugTools/Debug.h"
 

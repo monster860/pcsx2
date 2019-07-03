@@ -20,7 +20,7 @@
 #include "vtlb.h"
 
 #include "iCore.h"
-#include "iR5900.h"
+#include "iR5900/iR5900.h"
 #include "Utilities/Perf.h"
 
 using namespace vtlb_private;
